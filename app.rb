@@ -7,6 +7,11 @@ class HangpersonApp < Sinatra::Base
   enable :sessions
   register Sinatra::Flash
   
+   post '/new' do
+    "Hello World"
+  end
+  
+  
   before do
     @game = session[:game] || HangpersonGame.new('')
   end
