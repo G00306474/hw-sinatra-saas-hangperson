@@ -40,9 +40,9 @@ class HangpersonApp < Sinatra::Base
   post '/guess' do
     letter = params[:guess].to_s[0]
     ### YOUR CODE HERE ###
-   if(!@game.guess(letter))
-		flash[:message]="You have already used that letter"
-	end
+    if(!@game.guess(letter))
+		  flash[:message]="You have already used that letter"
+    end
 	  redirect '/show'
    
   end
@@ -52,19 +52,51 @@ class HangpersonApp < Sinatra::Base
   # won, lost, or neither, and take the appropriate action.
   # Notice that the show.erb template expects to use the instance variables
   # wrong_guesses and word_with_guesses from @game.
+  post '/guess' do
+    letter = params[:guess].to_s[0]
+    ### YOUR CODE HERE ###
+    if(!@game.guess(letter))
+		    flash[:message]="You have already used that letter"
+    end
+	    redirect '/show'
+
+  end
+  
+  # Everytime a guess is made, we should eventually end up at this route.
+  # Use existing methods in HangpersonGame to check if player has
+  # won, lost, or neither, and take the appropriate action.
+  # Notice that the show.erb template expects to use the instance variables
+  # wrong_guesses and word_with_guesses from @game.
   get '/show' do
     ### YOUR CODE HERE ###
+    status = @game.check_win_or_lose
+    if status == :win
+		  redirect "/win";
+    end
+	
+    	if status == :lose
+    		redirect "/lose";
+    	end
+	
+    	@wrong_guesses = @game.wrong_guesses
+    	@word_with_guesses = @game.word_with_guesses	
     erb :show # You may change/remove this line
   end
   
   get '/win' do
     ### YOUR CODE HERE ###
-    erb :win # You may change/remove this line
+    if @game.check_win_or_lose != :win
+		  redirect '/show'
+    end
+      erb :win # You may change/remove this line
   end
   
   get '/lose' do
     ### YOUR CODE HERE ###
-    erb :lose # You may change/remove this line
+    if @game.check_win_or_lose != :lose
+		  redirect '/show'
+    end
+      erb :lose # You may change/remove this line
   end
   
 end
