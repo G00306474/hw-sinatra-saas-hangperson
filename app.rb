@@ -7,9 +7,6 @@ class HangpersonApp < Sinatra::Base
   enable :sessions
   register Sinatra::Flash
   
-  
-  
-  
   before do
     @game = session[:game] || HangpersonGame.new('')
   end
