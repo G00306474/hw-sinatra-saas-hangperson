@@ -25,11 +25,10 @@ class HangpersonGame
 
   def guess(a)
     if (a=='' || a== NIL)
-        raise ArgumentError, "No null is allowed"
-       
+      raise ArgumentError, "No null is allowed"
     end
-    if (a.is_a? Integer)
-        raise ArgumentError, "No numbers"
+    if (a.match(/[^A-Za-z]/))
+      raise ArgumentError, "No numbers"
     end
     a=a.downcase()
     lists=@word.split("")
