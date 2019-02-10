@@ -27,7 +27,7 @@ class HangpersonGame
     if (a=='' || a== NIL)
     raise ArgumentError, "No null is allowed"
     end
-    if (a.match(/[^A-Za-z]/))
+    if (a.match(/[0-9]/))
       raise ArgumentError, "No numbers"
     end
     a=a.downcase()
