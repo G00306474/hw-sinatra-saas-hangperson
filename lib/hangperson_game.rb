@@ -26,7 +26,7 @@ class HangpersonGame
   def guess(a)
     if (a=='' || a== NIL)
         raise ArgumentError, "No null is allowed"
-        return true
+       
     end
     if (a.is_a? Integer)
         raise ArgumentError, "No numbers"
